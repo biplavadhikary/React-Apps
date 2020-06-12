@@ -56,6 +56,7 @@ class Header extends Component {
                 color: "whitesmoke",
                 fontSize: "2vw",
                 textTransform: "capitalize",
+                margin: "auto"
               }}
             >
               {title || "Adhikary Products"}

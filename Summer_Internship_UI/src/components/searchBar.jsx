@@ -15,10 +15,28 @@ const styles = (theme) => ({
   menu: {
     width: 200,
   },
+  cssLabel: {
+    color: "silver",
+
+    '&$cssFocused': {
+      color: 'cyan',
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: "cyan",
+    },
+  },
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: "lightblue",
+    },
+  },
+  notchedOutline: {},
 });
 
 class SearchBar extends Component {
-
   render() {
     const { classes, raiseSearch } = this.props;
 
@@ -33,6 +51,19 @@ class SearchBar extends Component {
         autoComplete="on"
         style={{ width: "96%" }}
         onChange={raiseSearch}
+        InputLabelProps={{
+          classes: {
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          },
+        }}
+        InputProps={{
+          classes: {
+            root: classes.cssOutlinedInput,
+            focused: classes.cssFocused,
+            notchedOutline: classes.notchedOutline,
+          },
+        }}
       />
     );
   }

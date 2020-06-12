@@ -47,9 +47,9 @@ class CollectorDashboard extends Component {
     });
   }
 
-  redirectToCustomerDetails = (cust) => {
-    console.log("Called for Redirect by ", cust);
-    this.setState({ redirect: true, selectedCustomerName: cust });
+  redirectToCustomerDetails = (custName) => {
+    //console.log("Called for Redirect by ", custName);
+    this.setState({ redirect: true, selectedCustomerName: custName });
   };
 
   handleCustomerTable = (customerNumber) => {
@@ -99,7 +99,10 @@ class CollectorDashboard extends Component {
           <Redirect
             to={{
               pathname: "/customer-dashboard",
-              state: { customer: this.state.selectedCustomerName },
+              state: {
+                customer: this.state.selectedCustomerName,
+                invoices: this.state.invoices,
+              },
             }}
           />
         )}
