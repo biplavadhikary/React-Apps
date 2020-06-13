@@ -42,7 +42,7 @@ class CustomerDetails extends Component {
         <Grid
           container
           direction="column"
-          style={{ ...card, marginTop: 20, paddingTop: 5, height: "80vh" }}
+          style={{ ...card, marginTop: 10, paddingTop: 5, height: "80vh" }}
         >
           <CustomerHeader card={card} classes={classes} />
           <InvoiceTable

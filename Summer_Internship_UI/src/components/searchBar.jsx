@@ -51,7 +51,7 @@ class SearchBar extends Component {
     const { classes, raiseSearch } = this.props;
 
     return (
-      <Grid container alignItems="center">
+      <Grid container alignItems="center" style={{ padding: 10 }}>
         <Grid item xs={1}>
           <Icon>
             <img src={searchIcon} style={{ width: "80%", float: "right" }}/>

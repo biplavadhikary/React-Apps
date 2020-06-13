@@ -10,18 +10,18 @@ class Header extends Component {
   renderIcon = (renderBack) => {
     //console.log("Render Back: ", renderBack === true);
     return renderBack === true ? (
-      <Link to="/">
+      <Link to="/" style={{ width: "15%" }}>
         <img
           src={backIcon}
           alt="<-"
-          style={{ paddingRight: "4vw", width: "3vw", cursor: "pointer" }}
+          style={{ width: "50%", paddingRight: 20, cursor: "pointer" }}
         ></img>
       </Link>
     ) : (
       <img
         src={companyLogo}
         alt="logo"
-        style={{ paddingRight: "4vw", width: "3vw" }}
+        style={{ width: "15%", paddingRight: 20 }}
       ></img>
     );
   };
@@ -41,7 +41,8 @@ class Header extends Component {
         <Grid
           container
           item
-          xs={4}
+          xs={7}
+          sm={4}
           alignItems="center"
           justify="flex-start"
           direction="row"
@@ -54,21 +55,21 @@ class Header extends Component {
               gutterBottom
               style={{
                 color: "whitesmoke",
-                fontSize: "2vw",
+                fontSize: 15,
                 textTransform: "capitalize",
-                margin: "auto"
+                margin: "auto 0"
               }}
             >
               {title || "Adhikary Products"}
             </Typography>
           </div>
         </Grid>
-        <Grid xs={2} item>
+        <Grid xs={4} sm={2} item>
           <img
             src={freedaBtn}
             style={{
-              borderRadius: "20px",
-              width: "10vw",
+              borderRadius: 40,
+              width: "50%",
               cursor: "pointer",
               marginRight: "2vw",
               float: "right",
