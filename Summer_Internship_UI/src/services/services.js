@@ -13,7 +13,7 @@ export function callInvoiceAPI(custNum) {
     {},
     {
       headers: { 'Content-Type': 'application/json' },
-      params: { id: custNum, limit: 20 },
+      params: { id: custNum, limit: 100 },
     }
   );
 }

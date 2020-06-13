@@ -49,6 +49,7 @@ class CustomerDetails extends Component {
             invoices={invoices}
             classes={classes}
             card={card}
+            enableToolbar={false}
             raiseCustomerDetails={this.handleCustomerUpdate}
           />
         </Grid>

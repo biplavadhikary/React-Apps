@@ -24,7 +24,7 @@ const styles = (theme) => ({
   },
   row: {
     height: 25,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   capitalize: {},
 });
@@ -62,20 +62,24 @@ class SimpleTable extends Component {
     //console.log("Customer List: ", rows)
 
     return (
-      <Paper className={classes.root}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow className={classes.row}>
-              <TableCell className={classes.cell}>Customer Name</TableCell>
-              <TableCell align="right" className={classes.cell}>Number</TableCell>
-              <TableCell align="right" className={classes.cell}>Open Amt</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.getRowData(rows, classes, raiseCustomerTable)}
-          </TableBody>
-        </Table>
-      </Paper>
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow className={classes.row}>
+                <TableCell className={classes.cell}>Customer Name</TableCell>
+                <TableCell align="right" className={classes.cell}>
+                  Number
+                </TableCell>
+                <TableCell align="right" className={classes.cell}>
+                  Open Amt
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.getRowData(rows, classes, raiseCustomerTable)}
+            </TableBody>
+          </Table>
+        </Paper>
     );
   }
 }

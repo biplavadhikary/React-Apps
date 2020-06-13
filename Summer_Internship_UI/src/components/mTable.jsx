@@ -74,7 +74,7 @@ class EnhancedTableHead extends Component {
               direction={order}
               onClick={this.createSortHandler(key)}
             >
-              {key}
+              {key.replace(/_/g , "\xa0")}
             </TableSortLabel>
           </Tooltip>
         </TableCell>
@@ -94,7 +94,7 @@ class EnhancedTableHead extends Component {
 
     return (
       <TableHead>
-        <TableRow>
+        <TableRow className="capitalize">
           <TableCell padding="checkbox">
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -194,12 +194,13 @@ const styles = (theme) => ({
     color: "#FFFFFF",
   },
   table: {
-     backgroundColor: "#1B1F38" ,
-     color: 'white'
-   },
+    backgroundColor: "#1B1F38",
+    color: "white",
+  },
   tableWrapper: {
     overflowX: "scroll",
     overflowY: "scroll",
+    borderRadius: 5
   },
   tablePagination: {},
   tablePaginationCaption: {
@@ -284,22 +285,28 @@ class EnhancedTable extends Component {
       <TableCell
         key={key}
         align="right"
-        onClick={() => raiseCustomerDetails(row['customer_name'])}
+        onClick={() => raiseCustomerDetails(row["customer_name"])}
       >
         {row[key]}
       </TableCell>
     ));
   };
 
+  shouldRenderToolbar = (enable, selected) => {
+    if (enable === undefined || enable === true)
+      return <EnhancedTableToolbar numSelected={selected.length} />;
+    else return null;
+  };
+
   render() {
-    const { classes, data, raiseCustomerDetails } = this.props;
+    const { classes, data, enableToolbar, raiseCustomerDetails } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        {this.shouldRenderToolbar(enableToolbar, selected)}
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}

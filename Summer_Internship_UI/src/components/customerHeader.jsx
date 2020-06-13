@@ -6,9 +6,9 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
-    button: {
-        margin: theme.spacing.unit,
-      }
+  button: {
+    margin: theme.spacing.unit,
+  },
 });
 
 class CustomerHeader extends Component {
@@ -16,7 +16,14 @@ class CustomerHeader extends Component {
     const { classes, card } = this.props;
 
     return (
-      <Grid item container justify="space-between" item direction="row">
+      <Grid
+        item
+        container
+        justify="space-between"
+        item
+        direction="row"
+        style={{ marginBottom: 10, padding: "0 1vw" }}
+      >
         <Grid
           item
           container
@@ -36,7 +43,7 @@ class CustomerHeader extends Component {
             </Button>
           </Tooltip>
           <Tooltip title="Export">
-          <Button
+            <Button
               variant="outlined"
               size="medium"
               color="secondary"

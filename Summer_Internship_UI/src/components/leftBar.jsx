@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./searchBar";
 import SimpleTable from "./simpleTable";
+import Zoom from "@material-ui/core/Zoom";
 
 class LeftBar extends Component {
   state = {
@@ -34,19 +35,23 @@ class LeftBar extends Component {
         direction="column"
         style={{ height: "64vh" }}
       >
-        <Grid style={{ ...card, padding: "0" }} xs={12} item></Grid>
-        <Grid
-          style={{ ...card, overflow: "scroll", padding: "0" }}
-          xs={12}
-          item
-        >
-          <SearchBar raiseSearch={this.handleSearch} />
-          <SimpleTable
-            data={filteredData}
-            classes={classes}
-            raiseCustomerTable={raiseCustomerTable}
-          />
-        </Grid>
+        <Zoom in={true}>
+          <Grid style={{ ...card, padding: "0" }} xs={12} item></Grid>
+        </Zoom>
+        <Zoom in={true}>
+          <Grid
+            style={{ ...card, overflow: "scroll", padding: "0" }}
+            xs={12}
+            item
+          >
+            <SearchBar raiseSearch={this.handleSearch} />
+            <SimpleTable
+              data={filteredData}
+              classes={classes}
+              raiseCustomerTable={raiseCustomerTable}
+            />
+          </Grid>
+        </Zoom>
       </Grid>
     );
   }

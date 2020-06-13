@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Footer from "../components/Footer";
 import { dashboardStyle } from "../utils/styles";
 import { callInvoiceAPI, callCustomerAPI } from "../services/services";
-import Summary from "../components/summary";
+import InvoiceAR from "../components/invoiceAR";
 import Header from "../components/header";
 import MainContent from "../components/mainContent";
 import { Redirect } from "react-router-dom";
@@ -84,7 +84,7 @@ class CollectorDashboard extends Component {
     return (
       <Grid container className={classes.root} spacing={8}>
         <Header />
-        <Summary classes={classes} card={card} />
+        <InvoiceAR classes={classes} card={card} />
         <MainContent
           invoices={this.state.invoices}
           customers={this.state.customers}
