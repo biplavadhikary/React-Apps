@@ -20,12 +20,22 @@ class CollectorDashboard extends Component {
     super(props);
     this.state = {
       //name: "",
-      selectedCustomerName: "",
-      selectedCustomerTable: "all",
       redirect: false,
       loading: false,
+      invoices: [],
       customers: [],
-      invoices: { list: [], count: 0 },
+      invoiceStats: {
+        total_customer: 0,
+        total_open_AR: 0,
+        average_days_delay: 0,
+        total_open_invoices: 0
+      },
+      selectedCustomerName: "all",
+      selectedCustomerId: "all",
+      selectedCustomerStats: {
+        total_open_invoices: 0,
+        total_open_AR: 0
+      }
     };
   }
 
@@ -36,12 +46,16 @@ class CollectorDashboard extends Component {
       });
     });
 
-    callInvoiceAPI(this.state.selectedCustomerTable).then((response) => {
+    callInvoiceAPI(this.state.selectedCustomerId).then((response) => {
       this.setState({
-        invoices: {
-          list: response.data.invoiceList,
-          count: response.data.totalCount,
-        },
+        invoices: response.data.invoiceList,
+        invoiceStats: response.data.stats,
+
+        // when no customer is selected
+        selectedCustomerStats: {
+          total_open_invoices: response.data.stats.total_open_invoices,
+          total_open_AR: response.data.stats.total_open_AR
+        }
       });
       //console.log(this.state.invoices);
     });
@@ -55,15 +69,16 @@ class CollectorDashboard extends Component {
   handleCustomerTable = (customerNumber) => {
     this.setState(
       {
-        selectedCustomerTable: customerNumber.toString(),
+        selectedCustomerId: customerNumber.toString(),
       },
       () => {
-        callInvoiceAPI(this.state.selectedCustomerTable).then((response) => {
+        callInvoiceAPI(this.state.selectedCustomerId).then((response) => {
           this.setState({
-            invoices: {
-              list: response.data.invoiceList,
-              count: response.data.totalCount,
-            },
+            invoices: response.data.invoiceList,
+            selectedCustomerStats: {
+              total_open_invoices: response.data.stats.total_open_invoices,
+              total_open_AR: response.data.stats.total_open_AR
+            }
           });
           //console.log(this.state.invoices);
         });
@@ -73,6 +88,8 @@ class CollectorDashboard extends Component {
 
   render() {
     const { classes } = this.props;
+    const { invoiceStats } = this.state;
+
     const card = {
       padding: "5vh 1vw",
       margin: "0.5vw",
@@ -84,7 +101,7 @@ class CollectorDashboard extends Component {
     return (
       <Grid container className={classes.root} spacing={8}>
         <Header />
-        <InvoiceAR classes={classes} card={card} />
+        <InvoiceAR classes={classes} card={card} stats={invoiceStats} />
         <MainContent
           invoices={this.state.invoices}
           customers={this.state.customers}
@@ -102,6 +119,7 @@ class CollectorDashboard extends Component {
               state: {
                 customer: this.state.selectedCustomerName,
                 invoices: this.state.invoices,
+                stats: this.state.selectedCustomerStats
               },
             }}
           />

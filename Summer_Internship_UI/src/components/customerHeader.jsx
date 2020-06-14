@@ -13,7 +13,7 @@ const styles = (theme) => ({
 
 class CustomerHeader extends Component {
   render() {
-    const { classes, card } = this.props;
+    const { classes, card, stats } = this.props;
 
     return (
       <Grid
@@ -53,7 +53,7 @@ class CustomerHeader extends Component {
             </Button>
           </Tooltip>
         </Grid>
-        <CustomerAR classes={classes} card={card} />
+        <CustomerAR classes={classes} card={card} stats={stats}/>
       </Grid>
     );
   }

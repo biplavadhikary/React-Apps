@@ -23,7 +23,7 @@ class InvoiceTable extends Component {
           style={{ ...card, height: "60vh", overflow: "scroll", padding: "0" }}
         >
           <EnhancedTable
-            data={invoices.list}
+            data={invoices}
             classes={classes}
             raiseCustomerDetails={raiseCustomerDetails}
             enableToolbar={enableToolbar}

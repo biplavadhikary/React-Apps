@@ -32,7 +32,7 @@ class CustomerDetails extends Component {
 
   render() {
     const { customer } = this.props.location.state || {};
-    const { invoices } = this.props.location.state;
+    const { invoices, stats } = this.props.location.state;
     const { classes } = this.props;
     //console.log("Invoices in CustomerDetails: ", invoices);
 
@@ -44,7 +44,7 @@ class CustomerDetails extends Component {
           direction="column"
           style={{ ...card, marginTop: 10, paddingTop: 5, height: "80vh" }}
         >
-          <CustomerHeader card={card} classes={classes} />
+          <CustomerHeader card={card} classes={classes} stats={stats} />
           <InvoiceTable
             invoices={invoices}
             classes={classes}
