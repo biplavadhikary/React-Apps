@@ -63,7 +63,8 @@ class CollectorDashboard extends Component {
 
   redirectToCustomerDetails = (custName) => {
     //console.log("Called for Redirect by ", custName);
-    this.setState({ redirect: true, selectedCustomerName: custName });
+    if (this.state.selectedCustomerId === "all") this.setState({ redirect: true });
+    else this.setState({ redirect: true, selectedCustomerName: custName });
   };
 
   handleCustomerTable = (customerNumber) => {
