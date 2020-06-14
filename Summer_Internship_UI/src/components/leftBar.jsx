@@ -9,6 +9,15 @@ class LeftBar extends Component {
     searchVal: "",
   };
 
+  addAllCustomerObject = customers => {
+    const all = {
+      customer_name: "All",
+      customer_number: "All",
+      total_open_amount: "-"
+    }
+    return [ all, ... customers ]
+  }
+
   handleSearch = (e) => {
     //console.log(e.target.value);
     this.setState({ searchVal: e.target.value });
@@ -18,7 +27,9 @@ class LeftBar extends Component {
     const { card, classes, customers, raiseCustomerTable } = this.props;
     const { searchVal } = this.state;
 
-    let filteredData = customers.filter(
+    const customersAll = this.addAllCustomerObject(customers)
+
+    let filteredData = customersAll.filter(
       (customer) =>
         customer["customer_name"].toLowerCase().indexOf(searchVal) !== -1 ||
         customer["customer_number"].toString().indexOf(searchVal) !== -1 ||

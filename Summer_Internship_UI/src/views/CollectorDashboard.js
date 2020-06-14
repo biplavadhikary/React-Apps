@@ -8,9 +8,9 @@ import InvoiceAR from "../components/invoiceAR";
 import Header from "../components/header";
 import MainContent from "../components/mainContent";
 import { Redirect } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 // import theme, { pxToVh } from "../utils/theme";
-// import { InputBase, TextField, OutlinedInput } from "@material-ui/core";
-// import { Button, Typography } from "@material-ui/core";
 
 // styles is already defined by MUI, we're are just adding a few more optional style attributes
 const styles = dashboardStyle;
@@ -18,6 +18,8 @@ const styles = dashboardStyle;
 class CollectorDashboard extends Component {
   constructor(props) {
     super(props);
+    console.log("Dashboard Data: ", this.props.dashboardData);
+
     this.state = {
       //name: "",
       redirect: false,
@@ -28,42 +30,47 @@ class CollectorDashboard extends Component {
         total_customer: 0,
         total_open_AR: 0,
         average_days_delay: 0,
-        total_open_invoices: 0
+        total_open_invoices: 0,
       },
       selectedCustomerName: "all",
       selectedCustomerId: "all",
       selectedCustomerStats: {
         total_open_invoices: 0,
-        total_open_AR: 0
-      }
+        total_open_AR: 0,
+      },
     };
   }
 
   componentDidMount() {
-    callCustomerAPI().then((response) => {
-      this.setState({
-        customers: response.data,
+    if (this.state.customers.length === 0) {
+      callCustomerAPI().then((response) => {
+        this.setState({
+          customers: response.data,
+        });
       });
-    });
+    }
 
-    callInvoiceAPI(this.state.selectedCustomerId).then((response) => {
-      this.setState({
-        invoices: response.data.invoiceList,
-        invoiceStats: response.data.stats,
+    if (this.state.invoices.length === 0) {
+      callInvoiceAPI(this.state.selectedCustomerId).then((response) => {
+        this.setState({
+          invoices: response.data.invoiceList,
+          invoiceStats: response.data.stats,
 
-        // when no customer is selected
-        selectedCustomerStats: {
-          total_open_invoices: response.data.stats.total_open_invoices,
-          total_open_AR: response.data.stats.total_open_AR
-        }
+          // when no customer is selected
+          selectedCustomerStats: {
+            total_open_invoices: response.data.stats.total_open_invoices,
+            total_open_AR: response.data.stats.total_open_AR,
+          },
+        });
+        //console.log(this.state.invoices);
       });
-      //console.log(this.state.invoices);
-    });
+    }
   }
 
   redirectToCustomerDetails = (custName) => {
     //console.log("Called for Redirect by ", custName);
-    if (this.state.selectedCustomerId === "all") this.setState({ redirect: true });
+    if (this.state.selectedCustomerId === "all")
+      this.setState({ redirect: true });
     else this.setState({ redirect: true, selectedCustomerName: custName });
   };
 
@@ -78,8 +85,8 @@ class CollectorDashboard extends Component {
             invoices: response.data.invoiceList,
             selectedCustomerStats: {
               total_open_invoices: response.data.stats.total_open_invoices,
-              total_open_AR: response.data.stats.total_open_AR
-            }
+              total_open_AR: response.data.stats.total_open_AR,
+            },
           });
           //console.log(this.state.invoices);
         });
@@ -120,7 +127,7 @@ class CollectorDashboard extends Component {
               state: {
                 customer: this.state.selectedCustomerName,
                 invoices: this.state.invoices,
-                stats: this.state.selectedCustomerStats
+                stats: this.state.selectedCustomerStats,
               },
             }}
           />
@@ -130,4 +137,12 @@ class CollectorDashboard extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(CollectorDashboard);
+function mapStateToProps(state) {
+  return {
+    dashboardData: state.dashboardData,
+  };
+}
+
+export default connect(mapStateToProps)(
+  withStyles(styles, { withTheme: true })(CollectorDashboard)
+);
