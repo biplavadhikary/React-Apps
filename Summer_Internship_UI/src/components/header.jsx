@@ -71,7 +71,7 @@ class Header extends Component {
               borderRadius: 40,
               width: "50%",
               cursor: "pointer",
-              marginRight: "2vw",
+              margin: "auto 2vw",
               float: "right",
             }}
             alt="Professor Bot"

@@ -9,7 +9,7 @@ import allReducers from "./reducers";
 import theme from '../src/utils/theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-const store = createStore(allReducers);
+export const store = createStore(allReducers);
 
 ReactDOM.render(
   <Provider store={store}>

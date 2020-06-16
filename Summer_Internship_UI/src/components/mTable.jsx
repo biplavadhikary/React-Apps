@@ -74,7 +74,7 @@ class EnhancedTableHead extends Component {
               direction={order}
               onClick={this.createSortHandler(key)}
             >
-              {key.replace(/_/g , "\xa0")}
+              {key.replace(/_/g, "\xa0")}
             </TableSortLabel>
           </Tooltip>
         </TableCell>
@@ -200,7 +200,7 @@ const styles = (theme) => ({
   tableWrapper: {
     overflowX: "scroll",
     overflowY: "scroll",
-    borderRadius: 5
+    borderRadius: 5,
   },
   tablePagination: {},
   tablePaginationCaption: {
@@ -237,17 +237,24 @@ class EnhancedTable extends Component {
     this.setState({ order, orderBy });
   };
 
-  handleSelectAllClick = (event) => {
+  handleSelectAllClick = (event, notifySelected) => {
     if (event.target.checked) {
-      this.setState((state) => ({
-        selected: this.props.data.map((n) => n.pk_id),
-      }));
+      this.setState(
+        (state) => ({
+          selected: this.props.data.map((n) => n.pk_id),
+        }),
+        () => {
+          if (notifySelected !== undefined) notifySelected(this.state.selected);
+        }
+      );
       return;
     }
-    this.setState({ selected: [] });
+    this.setState({ selected: [] }, () => {
+      if (notifySelected !== undefined) notifySelected(this.state.selected);
+    });
   };
 
-  handleClick = (event, id) => {
+  handleClick = (event, id, notifySelected) => {
     const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
@@ -265,7 +272,9 @@ class EnhancedTable extends Component {
       );
     }
 
-    this.setState({ selected: newSelected });
+    this.setState({ selected: newSelected }, () => {
+      if (notifySelected !== undefined) notifySelected(this.state.selected);
+    });
   };
 
   handleChangePage = (event, page) => {
@@ -299,7 +308,13 @@ class EnhancedTable extends Component {
   };
 
   render() {
-    const { classes, data, enableToolbar, raiseCustomerDetails } = this.props;
+    const {
+      classes,
+      data,
+      enableToolbar,
+      raiseCustomerDetails,
+      notifySelected,
+    } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
@@ -317,7 +332,9 @@ class EnhancedTable extends Component {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
+              onSelectAllClick={(event) =>
+                this.handleSelectAllClick(event, notifySelected)
+              }
               onRequestSort={this.handleRequestSort}
               rowCount={data.length}
               data={data}
@@ -340,7 +357,7 @@ class EnhancedTable extends Component {
                         <Checkbox
                           checked={isSelected}
                           onClick={(event) =>
-                            this.handleClick(event, row.pk_id)
+                            this.handleClick(event, row.pk_id, notifySelected)
                           }
                         />
                       </TableCell>

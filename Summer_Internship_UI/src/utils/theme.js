@@ -25,6 +25,9 @@ export default createMuiTheme({
       disabled: "#FFFFFF",
       hint: "#FFFFFF",
     },
+    action: {
+      disabled: '#909090'
+    }
   },
   overrides: {
     MuiButton: {

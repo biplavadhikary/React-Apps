@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./searchBar";
 import SimpleTable from "./simpleTable";
+import Barplot from "./barplot"
 import Zoom from "@material-ui/core/Zoom";
 
 class LeftBar extends Component {
@@ -47,7 +48,9 @@ class LeftBar extends Component {
         style={{ height: "64vh" }}
       >
         <Zoom in={true}>
-          <Grid style={{ ...card, padding: "0" }} xs={12} item></Grid>
+          <Grid xs={12} style={{ ...card, padding: "0", overflow: "scroll" }} item>
+            <Barplot classes={classes} />
+          </Grid>
         </Zoom>
         <Zoom in={true}>
           <Grid

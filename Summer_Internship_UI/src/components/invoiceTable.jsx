@@ -11,7 +11,9 @@ class InvoiceTable extends Component {
       invoices,
       enableToolbar,
       raiseCustomerDetails,
+      notifySelected
     } = this.props;
+
     //console.log("Calling from Table",invoices);
 
     return (
@@ -27,6 +29,7 @@ class InvoiceTable extends Component {
             classes={classes}
             raiseCustomerDetails={raiseCustomerDetails}
             enableToolbar={enableToolbar}
+            notifySelected={notifySelected}
           />
         </Grid>
       </Grow>

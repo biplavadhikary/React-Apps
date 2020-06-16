@@ -10,6 +10,8 @@ import MainContent from "../components/mainContent";
 import { Redirect } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { store } from "../index";
+import * as actions from "../actions/actionTypes";
 // import theme, { pxToVh } from "../utils/theme";
 
 // styles is already defined by MUI, we're are just adding a few more optional style attributes
@@ -18,7 +20,6 @@ const styles = dashboardStyle;
 class CollectorDashboard extends Component {
   constructor(props) {
     super(props);
-    console.log("Dashboard Data: ", this.props.dashboardData);
 
     this.state = {
       //name: "",
@@ -137,12 +138,20 @@ class CollectorDashboard extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    dashboardData: state.dashboardData,
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     dashboardData: state.dashboardData,
+//   };
+// }
 
-export default connect(mapStateToProps)(
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     updateDashboard: (data) => { 
+//       dispatch({ type: actions.UPDATE_DASHBOARD, data: data})
+//     }
+//   }
+// }
+
+export default /*connect(mapStateToProps, mapDispatchToProps)*/(
   withStyles(styles, { withTheme: true })(CollectorDashboard)
 );
