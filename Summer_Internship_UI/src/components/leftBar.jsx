@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./searchBar";
 import SimpleTable from "./simpleTable";
-import Barplot from "./barplot"
+import Barplot from "./barplot";
 import Zoom from "@material-ui/core/Zoom";
 
 class LeftBar extends Component {
@@ -10,14 +10,14 @@ class LeftBar extends Component {
     searchVal: "",
   };
 
-  addAllCustomerObject = customers => {
+  addAllCustomerObject = (customers) => {
     const all = {
       customer_name: "All",
       customer_number: "All",
-      total_open_amount: "-"
-    }
-    return [ all, ... customers ]
-  }
+      total_open_amount: "-",
+    };
+    return [all, ...customers];
+  };
 
   handleSearch = (e) => {
     //console.log(e.target.value);
@@ -28,7 +28,7 @@ class LeftBar extends Component {
     const { card, classes, customers, raiseCustomerTable } = this.props;
     const { searchVal } = this.state;
 
-    const customersAll = this.addAllCustomerObject(customers)
+    const customersAll = this.addAllCustomerObject(customers);
 
     let filteredData = customersAll.filter(
       (customer) =>
@@ -48,8 +48,16 @@ class LeftBar extends Component {
         style={{ height: "64vh" }}
       >
         <Zoom in={true}>
-          <Grid xs={12} style={{ ...card, padding: "0", overflow: "scroll" }} item>
-            <Barplot classes={classes} />
+          <Grid
+            xs={12}
+            style={{ ...card, padding: "10px 20px", overflow: "scroll" }}
+            item
+          >
+            <Barplot
+              classes={classes}
+              customers={customers}
+              raiseCustomerTable={raiseCustomerTable}
+            />
           </Grid>
         </Zoom>
         <Zoom in={true}>

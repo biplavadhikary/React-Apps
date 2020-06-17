@@ -35,7 +35,7 @@ class CustomerHeader extends Component {
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState({ open: true, dtypeVal: null, omtVal: null });
   };
 
   handleClose = () => {
@@ -44,7 +44,7 @@ class CustomerHeader extends Component {
 
   handleTextChange = (evt) => {
     if (evt.target.name === 'dtype')  this.setState({ dtypeVal: evt.target.value })
-    else if (evt.target.name == 'oAmt') this.setState({ omtVal: evt.target.value })
+    else if (evt.target.name === 'oAmt') this.setState({ omtVal: evt.target.value })
   };
 
   renderVal = (def, stateVal) => {

@@ -48,11 +48,20 @@ class CustomerDetails extends Component {
   updateSelected = (selectedIds) => {
     this.setState({ selected: selectedIds });
   };
-  
+
   handleModify = (dtypeVal, omtVal) => {
-    // console.log("Selected Indexes: ", this.state.selected)
-    console.log("Modification Form Submitted: ", dtypeVal, omtVal)
-  }
+    const pk_id = this.state.selected[0];
+    const updatedInvoices = this.state.invoices
+
+    let indexToModify = updatedInvoices.findIndex(
+      (entry) => entry.pk_id === pk_id
+    );
+    // console.log("Before Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
+    if(dtypeVal !== null) updatedInvoices[indexToModify].doctype = dtypeVal
+    if(omtVal !== null) updatedInvoices[indexToModify].total_open_amount = parseFloat(omtVal)
+    // console.log("After Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
+    this.setState({ invoices: updatedInvoices });
+  };
 
   render() {
     const { customer, invoices, stats, selected } = this.state;

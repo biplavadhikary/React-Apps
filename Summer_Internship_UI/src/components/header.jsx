@@ -21,7 +21,7 @@ class Header extends Component {
       <img
         src={companyLogo}
         alt="logo"
-        style={{ width: "15%", paddingRight: 20 }}
+        style={{ width: 25, paddingRight: 20 }}
       ></img>
     );
   };

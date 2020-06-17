@@ -37,7 +37,7 @@ class SimpleTable extends Component {
         <TableRow
           key={row.customer_number}
           className={classes.row}
-          onClick={() => raiseEvent(row.customer_number)}
+          onClick={() => raiseEvent(row.customer_number, row.customer_name)}
         >
           <TableCell
             className={classes.cell + " capitalize"}

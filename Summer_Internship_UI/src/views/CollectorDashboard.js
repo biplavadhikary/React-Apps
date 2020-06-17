@@ -8,10 +8,10 @@ import InvoiceAR from "../components/invoiceAR";
 import Header from "../components/header";
 import MainContent from "../components/mainContent";
 import { Redirect } from "react-router-dom";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { store } from "../index";
-import * as actions from "../actions/actionTypes";
+// import { bindActionCreators } from "redux";
+// import { connect } from "react-redux";
+// import { store } from "../index";
+// import * as actions from "../actions/actionTypes";
 // import theme, { pxToVh } from "../utils/theme";
 
 // styles is already defined by MUI, we're are just adding a few more optional style attributes
@@ -22,7 +22,6 @@ class CollectorDashboard extends Component {
     super(props);
 
     this.state = {
-      //name: "",
       redirect: false,
       loading: false,
       invoices: [],
@@ -35,10 +34,6 @@ class CollectorDashboard extends Component {
       },
       selectedCustomerName: "all",
       selectedCustomerId: "all",
-      selectedCustomerStats: {
-        total_open_invoices: 0,
-        total_open_AR: 0,
-      },
     };
   }
 
@@ -56,12 +51,6 @@ class CollectorDashboard extends Component {
         this.setState({
           invoices: response.data.invoiceList,
           invoiceStats: response.data.stats,
-
-          // when no customer is selected
-          selectedCustomerStats: {
-            total_open_invoices: response.data.stats.total_open_invoices,
-            total_open_AR: response.data.stats.total_open_AR,
-          },
         });
         //console.log(this.state.invoices);
       });
@@ -75,19 +64,17 @@ class CollectorDashboard extends Component {
     else this.setState({ redirect: true, selectedCustomerName: custName });
   };
 
-  handleCustomerTable = (customerNumber) => {
+  updateDashboardData = (customerNumber, customerName) => {
     this.setState(
       {
         selectedCustomerId: customerNumber.toString(),
+        selectedCustomerName: customerName
       },
       () => {
         callInvoiceAPI(this.state.selectedCustomerId).then((response) => {
           this.setState({
             invoices: response.data.invoiceList,
-            selectedCustomerStats: {
-              total_open_invoices: response.data.stats.total_open_invoices,
-              total_open_AR: response.data.stats.total_open_AR,
-            },
+            invoiceStats: response.data.stats,
           });
           //console.log(this.state.invoices);
         });
@@ -97,7 +84,8 @@ class CollectorDashboard extends Component {
 
   render() {
     const { classes } = this.props;
-    const { invoiceStats } = this.state;
+    const { invoiceStats, selectedCustomerName } = this.state;
+    console.log("Selecteed CustomerName Before Render: ", selectedCustomerName)
 
     const card = {
       padding: "5vh 1vw",
@@ -109,7 +97,7 @@ class CollectorDashboard extends Component {
 
     return (
       <Grid container className={classes.root} spacing={8}>
-        <Header />
+        <Header title={selectedCustomerName}/>
         <InvoiceAR classes={classes} card={card} stats={invoiceStats} />
         <MainContent
           invoices={this.state.invoices}
@@ -117,7 +105,7 @@ class CollectorDashboard extends Component {
           classes={classes}
           card={card}
           raiseCustomerDetails={this.redirectToCustomerDetails}
-          raiseCustomerTable={this.handleCustomerTable}
+          raiseCustomerTable={this.updateDashboardData}
         />
         <Footer />
 
@@ -128,7 +116,11 @@ class CollectorDashboard extends Component {
               state: {
                 customer: this.state.selectedCustomerName,
                 invoices: this.state.invoices,
-                stats: this.state.selectedCustomerStats,
+                stats: {
+                  total_open_invoices: invoiceStats.total_open_invoices,
+                  total_open_AR: invoiceStats.total_open_AR,
+                }
+                //this.state.selectedCustomerStats,
               },
             }}
           />
