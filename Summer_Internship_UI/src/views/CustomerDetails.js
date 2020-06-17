@@ -22,9 +22,12 @@ class CustomerDetails extends Component {
     super(props);
 
     if (this.props.location.state !== undefined) {
+      const specifiedColInvoices = this.props.location.state.invoices.map(
+        ({ predicted_payment_type, predicted_amount, ...item }) => item
+      );
       this.state = {
         customer: this.props.location.state.customer || {},
-        invoices: this.props.location.state.invoices,
+        invoices: specifiedColInvoices,
         stats: this.props.location.state.stats,
         selected: [],
       };
@@ -51,14 +54,15 @@ class CustomerDetails extends Component {
 
   handleModify = (dtypeVal, omtVal) => {
     const pk_id = this.state.selected[0];
-    const updatedInvoices = this.state.invoices
+    const updatedInvoices = this.state.invoices;
 
     let indexToModify = updatedInvoices.findIndex(
       (entry) => entry.pk_id === pk_id
     );
     // console.log("Before Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
-    if(dtypeVal !== null) updatedInvoices[indexToModify].doctype = dtypeVal
-    if(omtVal !== null) updatedInvoices[indexToModify].total_open_amount = parseFloat(omtVal)
+    if (dtypeVal !== null) updatedInvoices[indexToModify].doctype = dtypeVal;
+    if (omtVal !== null)
+      updatedInvoices[indexToModify].total_open_amount = parseFloat(omtVal);
     // console.log("After Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
     this.setState({ invoices: updatedInvoices });
   };
