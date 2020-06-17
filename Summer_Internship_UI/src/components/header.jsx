@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Paper from "@material-ui/core/Paper";
 import companyLogo from "../assets/companyLogo.svg";
 import backIcon from "../assets/left-arrow.svg";
 import freedaBtn from "../assets/FredaButton.png";
@@ -35,14 +36,14 @@ class Header extends Component {
         item
         direction="row"
         justify="space-between"
-        alignItems="center"
+        alignItems="flex-start"
         xs={12}
       >
         <Grid
           container
           item
-          xs={7}
-          sm={4}
+          xs={4}
+          sm={3}
           alignItems="center"
           justify="flex-start"
           direction="row"
@@ -57,21 +58,37 @@ class Header extends Component {
                 color: "whitesmoke",
                 fontSize: 15,
                 textTransform: "capitalize",
-                margin: "auto 0"
+                margin: "auto 0",
               }}
             >
               {title || "Adhikary Products"}
             </Typography>
           </div>
         </Grid>
-        <Grid xs={4} sm={2} item>
+        <Grid item xs={2} sm={2}>
+          <Paper
+            style={{
+              backgroundColor: "#ff7b00",
+              color: "white",
+              textAlign: "center",
+              fontSize: "0.5rem",
+              padding: 5,
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+            }}
+          >
+            Receivables Dashboard
+          </Paper>
+        </Grid>
+        <Grid xs={4} sm={3} item>
           <img
             src={freedaBtn}
             style={{
               borderRadius: 40,
-              width: "50%",
+              height: 28,
               cursor: "pointer",
-              margin: "auto 2vw",
+              margin: "auto 1vw",
+              paddingTop: 8,
               float: "right",
             }}
             alt="Professor Bot"
