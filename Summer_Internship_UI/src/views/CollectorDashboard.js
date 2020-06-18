@@ -32,7 +32,7 @@ class CollectorDashboard extends Component {
         average_days_delay: 0,
         total_open_invoices: 0,
       },
-      selectedCustomerName: "all",
+      selectedCustomerName: "all customers",
       selectedCustomerId: "all",
     };
   }
@@ -64,7 +64,7 @@ class CollectorDashboard extends Component {
     else this.setState({ redirect: true, selectedCustomerName: custName });
   };
 
-  updateDashboardData = (customerNumber, customerName) => {
+  updateDashboardData = (customerNumber, customerName, shouldRedirect) => {
     this.setState(
       {
         selectedCustomerId: customerNumber.toString(),
@@ -75,6 +75,10 @@ class CollectorDashboard extends Component {
           this.setState({
             invoices: response.data.invoiceList,
             invoiceStats: response.data.stats,
+          }, () => {
+            console.log("Should Redirect is: ", shouldRedirect)
+            if (shouldRedirect === true || shouldRedirect === undefined) 
+              this.redirectToCustomerDetails(this.state.selectedCustomerName)
           });
           //console.log(this.state.invoices);
         });

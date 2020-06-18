@@ -14,7 +14,7 @@ const styles = (theme) => ({
 
 class Barplot extends Component {
   render() {
-    const { classes, customers, raiseCustomerTable } = this.props;
+    const { classes, customers, raiseCustomerTable, items } = this.props;
     // const sortedCustomers = customers.sort(
     //   (c1, c2) => c2.total_open_amount - c1.total_open_amount
     // );
@@ -27,7 +27,8 @@ class Barplot extends Component {
           customers,
           this.getCategories,
           this.getData,
-          raiseCustomerTable
+          raiseCustomerTable, 
+          items
         )}
       />
     );
@@ -45,13 +46,14 @@ class Barplot extends Component {
       : [];
   };
 
-  getOptions = (customers, getCategories, getData, raiseCustomerTable) => {
+  getOptions = (customers, getCategories, getData, raiseCustomerTable, items) => {
+    //console.log("Got items: ", items)
     return {
       chart: {
         backgroundColor: "transparent",
         type: "bar",
         zoomType: "xy",
-        height: 1500,
+        height: 25*items + 200,
       },
 
       title: {
@@ -94,7 +96,7 @@ class Barplot extends Component {
             },
           },
           borderWidth: 0,
-          // pointWidth: 20,
+          pointWidth: 20,
           // pointPadding: 40,
           // groupPadding: 10
         },
@@ -152,10 +154,11 @@ class Barplot extends Component {
                   );
                   raiseCustomerTable(
                     selectedCustomer.customer_number,
-                    selectedCustomer.customer_name
+                    selectedCustomer.customer_name,
+                    false
                   );
                 } else {
-                  raiseCustomerTable("all", "all");
+                  raiseCustomerTable("all", "all", false);
                 }
               },
             },

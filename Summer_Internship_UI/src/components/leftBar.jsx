@@ -12,7 +12,7 @@ class LeftBar extends Component {
 
   addAllCustomerObject = (customers) => {
     const all = {
-      customer_name: "All",
+      customer_name: "All Customers",
       customer_number: "All",
       total_open_amount: "-",
     };
@@ -23,6 +23,19 @@ class LeftBar extends Component {
     //console.log(e.target.value);
     this.setState({ searchVal: e.target.value });
   };
+
+  getPlotData = (plotData) => {
+    if (plotData.length !== 0 && plotData !== undefined) {
+      if (plotData[0].customer_number === "All") {
+        let plotDataNew = [...plotData];
+        plotDataNew.shift()
+        return plotDataNew
+      }
+      return plotData
+    }
+    // console.log("undefined")
+    return plotData
+  }
 
   render() {
     const { card, classes, customers, raiseCustomerTable } = this.props;
@@ -55,8 +68,9 @@ class LeftBar extends Component {
           >
             <Barplot
               classes={classes}
-              customers={customers}
+              customers={this.getPlotData(filteredData)}
               raiseCustomerTable={raiseCustomerTable}
+              items={filteredData.length}
             />
           </Grid>
         </Zoom>

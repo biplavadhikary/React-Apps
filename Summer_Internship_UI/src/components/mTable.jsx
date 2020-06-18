@@ -122,16 +122,6 @@ const toolbarStyles = (theme) => ({
   root: {
     paddingRight: theme.spacing.unit,
   },
-  highlight:
-    theme.palette.type === "light"
-      ? {
-          color: theme.palette.primary.main,
-          backgroundColor: lighten(theme.palette.primary.light, 0.85),
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
   spacer: {
     flex: "1 1 100%",
   },
@@ -165,17 +155,17 @@ let EnhancedTableToolbar = (props) => {
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Predict">
-            <Button>Predict</Button>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
-              <FilterListIcon style={{ fill: "#fff" }} />
-            </IconButton>
-          </Tooltip>
-        )}
+        <Tooltip title="Predict">
+            <Button
+              variant="outlined"
+              size="medium"
+              color="secondary"
+              className={classes.button}
+              disabled={numSelected > 0 ? false : true}
+            >
+              Predict
+            </Button>
+        </Tooltip>
       </div>
     </Toolbar>
   );
