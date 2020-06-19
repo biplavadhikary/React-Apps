@@ -4,12 +4,14 @@ import LeftBar from "./leftBar";
 import InvoiceTable from "./invoiceTable";
 
 class MainContent extends Component {
+
   render() {
     const {
       card,
       classes,
       raiseCustomerDetails,
       raiseCustomerTable,
+      raisePredict,
       customers,
       invoices,
     } = this.props;
@@ -33,6 +35,7 @@ class MainContent extends Component {
           classes={classes}
           card={card}
           raiseCustomerDetails={raiseCustomerDetails}
+          raisePredict={raisePredict}
         />
       </Grid>
     );

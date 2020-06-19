@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { customerDetailsTheme } from "../utils/styles";
 import CustomerHeader from "../components/customerHeader";
 import InvoiceTable from "../components/invoiceTable";
+import { callForModificationUpdate } from "../services/services";
 
 const styles = customerDetailsTheme;
 
@@ -54,17 +55,31 @@ class CustomerDetails extends Component {
 
   handleModify = (dtypeVal, omtVal) => {
     const pk_id = this.state.selected[0];
-    const updatedInvoices = this.state.invoices;
 
-    let indexToModify = updatedInvoices.findIndex(
-      (entry) => entry.pk_id === pk_id
-    );
-    // console.log("Before Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
-    if (dtypeVal !== null) updatedInvoices[indexToModify].doctype = dtypeVal;
-    if (omtVal !== null)
-      updatedInvoices[indexToModify].total_open_amount = parseFloat(omtVal);
-    // console.log("After Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
-    this.setState({ invoices: updatedInvoices });
+    callForModificationUpdate(pk_id, dtypeVal, omtVal)
+      .then((response) => {
+
+        if (response.status === 200) {
+          console.log(response.status);
+          const updatedInvoices = this.state.invoices;
+          let indexToModify = updatedInvoices.findIndex(
+            (entry) => entry.pk_id === pk_id
+          );
+          // console.log("Before Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
+          if (dtypeVal !== null)
+            updatedInvoices[indexToModify].doctype = dtypeVal;
+          if (omtVal !== null)
+            updatedInvoices[indexToModify].total_open_amount = parseFloat(
+              omtVal
+            );
+          // console.log("After Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
+          this.setState({ invoices: updatedInvoices });
+        }
+        
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   render() {
@@ -96,6 +111,7 @@ class CustomerDetails extends Component {
             enableToolbar={false}
             raiseCustomerDetails={this.handleCustomerUpdate}
             notifySelected={this.updateSelected}
+            tableHeight={"auto"}
           />
         </Grid>
         <Footer />

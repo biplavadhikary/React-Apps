@@ -3,7 +3,11 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Footer from "../components/Footer";
 import { dashboardStyle } from "../utils/styles";
-import { callInvoiceAPI, callCustomerAPI } from "../services/services";
+import {
+  callInvoiceAPI,
+  callCustomerAPI,
+  callPredictionAPI,
+} from "../services/services";
 import InvoiceAR from "../components/invoiceAR";
 import Header from "../components/header";
 import MainContent from "../components/mainContent";
@@ -68,28 +72,62 @@ class CollectorDashboard extends Component {
     this.setState(
       {
         selectedCustomerId: customerNumber.toString(),
-        selectedCustomerName: customerName
+        selectedCustomerName: customerName,
       },
       () => {
         callInvoiceAPI(this.state.selectedCustomerId).then((response) => {
-          this.setState({
-            invoices: response.data.invoiceList,
-            invoiceStats: response.data.stats,
-          }, () => {
-            console.log("Should Redirect is: ", shouldRedirect)
-            if (shouldRedirect === true || shouldRedirect === undefined) 
-              this.redirectToCustomerDetails(this.state.selectedCustomerName)
-          });
+          this.setState(
+            {
+              invoices: response.data.invoiceList,
+              invoiceStats: response.data.stats,
+            },
+            () => {
+              //console.log("Should Redirect is: ", shouldRedirect)
+              if (shouldRedirect === true || shouldRedirect === undefined)
+                this.redirectToCustomerDetails(this.state.selectedCustomerName);
+            }
+          );
           //console.log(this.state.invoices);
         });
       }
     );
   };
 
+  handlePredict = (selectedItems) => {
+    const invoicesForPrediction = this.state.invoices.filter((item) =>
+      selectedItems.includes(item.pk_id)
+    );
+    // console.log("Predictions Called for Invoices: ", invoicesForPrediction);
+
+    callPredictionAPI(invoicesForPrediction)
+      .then((response) => {
+        const predictedInvoices = response.data;
+
+        const newInvoices = this.state.invoices.map((item) => {
+          const newItem = predictedInvoices.filter(
+            (el) => el["Pk Id"] === item.pk_id
+          );
+          if (newItem[0] !== undefined) {
+            return {
+              ...item,
+              predicted_amount: newItem[0]["First Payment (Predicted)"],
+              predicted_payment_type: newItem[0]["Payment Type"],
+            };
+          } else {
+            return item;
+          }
+        });
+        //console.log(newInvoices)
+        this.setState({ invoices: newInvoices });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
+
   render() {
     const { classes } = this.props;
     const { invoiceStats, selectedCustomerName } = this.state;
-    console.log("Selecteed CustomerName Before Render: ", selectedCustomerName)
 
     const card = {
       padding: "5vh 1vw",
@@ -101,7 +139,7 @@ class CollectorDashboard extends Component {
 
     return (
       <Grid container className={classes.root} spacing={8}>
-        <Header title={selectedCustomerName}/>
+        <Header title={selectedCustomerName} />
         <InvoiceAR classes={classes} card={card} stats={invoiceStats} />
         <MainContent
           invoices={this.state.invoices}
@@ -110,6 +148,7 @@ class CollectorDashboard extends Component {
           card={card}
           raiseCustomerDetails={this.redirectToCustomerDetails}
           raiseCustomerTable={this.updateDashboardData}
+          raisePredict={this.handlePredict}
         />
         <Footer />
 
@@ -123,7 +162,7 @@ class CollectorDashboard extends Component {
                 stats: {
                   total_open_invoices: invoiceStats.total_open_invoices,
                   total_open_AR: invoiceStats.total_open_AR,
-                }
+                },
                 //this.state.selectedCustomerStats,
               },
             }}
@@ -142,12 +181,13 @@ class CollectorDashboard extends Component {
 
 // function mapDispatchToProps(dispatch) {
 //   return {
-//     updateDashboard: (data) => { 
+//     updateDashboard: (data) => {
 //       dispatch({ type: actions.UPDATE_DASHBOARD, data: data})
 //     }
 //   }
 // }
 
-export default /*connect(mapStateToProps, mapDispatchToProps)*/(
-  withStyles(styles, { withTheme: true })(CollectorDashboard)
-);
+export default /*connect(mapStateToProps, mapDispatchToProps)*/ withStyles(
+  styles,
+  { withTheme: true }
+)(CollectorDashboard);

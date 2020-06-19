@@ -11,7 +11,9 @@ class InvoiceTable extends Component {
       invoices,
       enableToolbar,
       raiseCustomerDetails,
-      notifySelected
+      notifySelected,
+      raisePredict,
+      tableHeight
     } = this.props;
 
     //console.log("Calling from Table",invoices);
@@ -22,7 +24,7 @@ class InvoiceTable extends Component {
           item
           xs={12}
           s={8}
-          style={{ ...card, height: "60vh", overflow: "scroll", padding: "0" }}
+          style={{ ...card, height: "60vh", overflow: "auto", padding: "0" }}
         >
           <EnhancedTable
             data={invoices}
@@ -30,6 +32,8 @@ class InvoiceTable extends Component {
             raiseCustomerDetails={raiseCustomerDetails}
             enableToolbar={enableToolbar}
             notifySelected={notifySelected}
+            raisePredict={raisePredict}
+            tableHeight={tableHeight}
           />
         </Grid>
       </Grow>

@@ -13,11 +13,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import { lighten } from "@material-ui/core/styles/colorManipulator";
 import theme from "../utils/theme";
 
 function desc(a, b, orderBy) {
@@ -134,7 +131,7 @@ const toolbarStyles = (theme) => ({
 });
 
 let EnhancedTableToolbar = (props) => {
-  const { numSelected, classes } = props;
+  const { numSelected, classes, selectedItems, raisePredict } = props;
 
   return (
     <Toolbar
@@ -156,15 +153,16 @@ let EnhancedTableToolbar = (props) => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         <Tooltip title="Predict">
-            <Button
-              variant="outlined"
-              size="medium"
-              color="secondary"
-              className={classes.button}
-              disabled={numSelected > 0 ? false : true}
-            >
-              Predict
-            </Button>
+          <Button
+            variant="outlined"
+            size="medium"
+            color="secondary"
+            className={classes.button}
+            disabled={numSelected > 0 ? false : true}
+            onClick={() => raisePredict(selectedItems)}
+          >
+            Predict
+          </Button>
         </Tooltip>
       </div>
     </Toolbar>
@@ -291,9 +289,15 @@ class EnhancedTable extends Component {
     ));
   };
 
-  shouldRenderToolbar = (enable, selected) => {
+  shouldRenderToolbar = (enable, selected, raisePredict) => {
     if (enable === undefined || enable === true)
-      return <EnhancedTableToolbar numSelected={selected.length} />;
+      return (
+        <EnhancedTableToolbar
+          numSelected={selected.length}
+          selectedItems={selected}
+          raisePredict={raisePredict}
+        />
+      );
     else return null;
   };
 
@@ -304,15 +308,21 @@ class EnhancedTable extends Component {
       enableToolbar,
       raiseCustomerDetails,
       notifySelected,
+      tableHeight,
+      raisePredict,
     } = this.props;
+    
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        {this.shouldRenderToolbar(enableToolbar, selected)}
-        <div className={classes.tableWrapper}>
+        {this.shouldRenderToolbar(enableToolbar, selected, raisePredict)}
+        <div
+          className={classes.tableWrapper}
+          style={{ height: tableHeight || "40vh" }}
+        >
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
