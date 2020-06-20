@@ -139,7 +139,7 @@ class CollectorDashboard extends Component {
 
     return (
       <Grid container className={classes.root} spacing={8}>
-        <Header title={selectedCustomerName} />
+        <Header title={selectedCustomerName} classes={classes} />
         <InvoiceAR classes={classes} card={card} stats={invoiceStats} />
         <MainContent
           invoices={this.state.invoices}

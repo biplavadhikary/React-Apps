@@ -23,10 +23,10 @@ export const dashboardStyle = (theme) => ({
     color: "#FFFFFFA6",
     fontSize: "1.5vw",
   },
-  nameInput: {
-    fontSize: "1vw",
-    color: "#FFFFFF",
-  },
+  // nameInput: {
+  //   fontSize: "1vw",
+  //   color: "#FFFFFF",
+  // },
   notchedOutline: { borderWidth: "1px", borderColor: "#5DAAE0 !important" },
   searchBtn: {
     marginTop: "8vh",

@@ -1,0 +1,34 @@
+[
+    {
+        "user": "professor",
+        "message": "Hi! How are you? I'm here to help you"
+    }, 
+    {
+        "user": "me",
+        "message": "I'm pretty much fine"
+    }, 
+    {
+        "user": "professor",
+        "message": "Glad to hear that."
+    }, 
+    {
+        "user": "me",
+        "message": "I need help"
+    }, 
+    {
+        "user": "professor",
+        "message": "Just ask me for it. I'm always here"
+    }, 
+    {
+        "user": "me",
+        "message": "Very Cool"
+    }, 
+    {
+        "user": "professor",
+        "message": "Glad you liked it"
+    }, 
+    {
+        "user": "me",
+        "message": "I'm pretty much fine"
+    }
+]

@@ -6,8 +6,13 @@ import Paper from "@material-ui/core/Paper";
 import companyLogo from "../assets/companyLogo.svg";
 import backIcon from "../assets/left-arrow.svg";
 import freedaBtn from "../assets/FredaButton.png";
+import BotModal from "./bot/botModal";
 
 class Header extends Component {
+  state = {
+    botModalOpen: false,
+  };
+
   renderIcon = (renderBack) => {
     //console.log("Render Back: ", renderBack === true);
     return renderBack === true ? (
@@ -27,8 +32,16 @@ class Header extends Component {
     );
   };
 
+  handleOpen = () => {
+    this.setState({ botModalOpen: true });
+  };
+
+  handleMinimize = () => {
+    this.setState({ botModalOpen: false });
+  };
+
   render() {
-    const { title, back: renderBack } = this.props;
+    const { title, classes, back: renderBack } = this.props;
 
     return (
       <Grid
@@ -92,8 +105,16 @@ class Header extends Component {
               float: "right",
             }}
             alt="Professor Bot"
+            onClick={this.handleOpen}
           ></img>
         </Grid>
+        <div style={{ display: "none" }}>
+          <BotModal
+            classes={classes}
+            open={this.state.botModalOpen}
+            handleMinimize={this.handleMinimize}
+          />
+        </div>
       </Grid>
     );
   }

@@ -31,7 +31,7 @@ class CustomerHeader extends Component {
   state = {
     open: false,
     dtypeVal: null,
-    omtVal: null
+    omtVal: null,
   };
 
   handleClickOpen = () => {
@@ -43,14 +43,16 @@ class CustomerHeader extends Component {
   };
 
   handleTextChange = (evt) => {
-    if (evt.target.name === 'dtype')  this.setState({ dtypeVal: evt.target.value })
-    else if (evt.target.name === 'oAmt') this.setState({ omtVal: evt.target.value })
+    if (evt.target.name === "dtype")
+      this.setState({ dtypeVal: evt.target.value });
+    else if (evt.target.name === "oAmt")
+      this.setState({ omtVal: evt.target.value });
   };
 
   renderVal = (def, stateVal) => {
-    if (stateVal === null) return def
-    else return stateVal
-  }
+    if (stateVal === null) return def;
+    else return stateVal;
+  };
 
   filterSelected = (data, selected) => {
     if (selected.length === 0) return data;
@@ -68,8 +70,9 @@ class CustomerHeader extends Component {
     } = this.props;
 
     const filteredData = this.filterSelected(data, selected);
-    let selectedData = data.find((entry) => entry.pk_id === selected[0])
-    if (selectedData === undefined) selectedData = {
+    let selectedData = data.find((entry) => entry.pk_id === selected[0]);
+    if (selectedData === undefined)
+      selectedData = {
         doctype: "",
         total_open_amount: 0,
       };
@@ -148,7 +151,10 @@ class CustomerHeader extends Component {
               margin="dense"
               label="Open Amount"
               name="oAmt"
-              value={this.renderVal(selectedData.total_open_amount, this.state.omtVal)}
+              value={this.renderVal(
+                selectedData.total_open_amount,
+                this.state.omtVal
+              )}
               onChange={this.handleTextChange}
               InputLabelProps={{
                 classes: {
@@ -187,8 +193,11 @@ class CustomerHeader extends Component {
             </Button>
             <Button
               onClick={() => {
-                this.props.raiseModification(this.state.dtypeVal, this.state.omtVal)
-                this.handleClose()
+                this.props.raiseModification(
+                  this.state.dtypeVal,
+                  this.state.omtVal
+                );
+                this.handleClose();
               }}
               variant="outlined"
               size="medium"
