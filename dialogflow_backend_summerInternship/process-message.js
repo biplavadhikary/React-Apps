@@ -27,9 +27,22 @@ async function processMessage(message) {
   const res = await sessionClient
     .detectIntent(request)
     .then((responses) => {
-      console.log(JSON.stringify(responses));
+
+      // allows only single response
+      // console.log(JSON.stringify(responses));
       const result = responses[0].queryResult.fulfillmentText;
-      return result;
+
+      // to allow Multiple Messages
+      var resultMultiple = ""
+      var allResponses = responses[0].queryResult.fulfillmentMessages
+      for (var i = 0; i < allResponses.length; i++) {
+        //console.log(allResponses[i].text.text[0]);
+        resultMultiple += allResponses[i].text.text[0]
+        if (i !== allResponses.length - 1) resultMultiple += "\n\n"
+      }
+      console.log(resultMultiple)
+
+      return resultMultiple;
     })
     .catch((err) => {
       console.error("ERROR:", err);
