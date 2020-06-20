@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
 import professorIcon from "../../assets/john.svg";
 import userIcon from "../../assets/avatar.svg";
 //import { Typography } from "@material-ui/core";
-
-const styles = (theme) => ({});
 
 class Chat extends Component {
   renderMessages = (messages) => {
@@ -22,7 +19,7 @@ class Chat extends Component {
             <Grid item xs={2}>
               <img src={professorIcon} alt="O" style={{ width: "50%" }}></img>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} style={{ whiteSpace: "pre-line" }}>
               {message.message}
             </Grid>
           </Grid>
@@ -33,7 +30,7 @@ class Chat extends Component {
             container
             item
             justify="flex-end"
-            style={{ marginBottom: 20, textAlign: "right" }}
+            style={{ marginBottom: 20, textAlign: "right", whiteSpace: "pre-line" }}
           >
             <Grid item xs={6}>
               {message.message}
@@ -75,4 +72,4 @@ class Chat extends Component {
   }
 }
 
-export default withStyles(styles)(Chat);
+export default Chat;

@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import companyLogo from "../assets/companyLogo.svg";
 import backIcon from "../assets/left-arrow.svg";
 import freedaBtn from "../assets/FredaButton.png";
-import BotModal from "./bot/botModal";
+import BotMain from "./bot/botMain";
 
 class Header extends Component {
   state = {
@@ -109,7 +109,7 @@ class Header extends Component {
           ></img>
         </Grid>
         <div style={{ display: "none" }}>
-          <BotModal
+          <BotMain
             classes={classes}
             open={this.state.botModalOpen}
             handleMinimize={this.handleMinimize}

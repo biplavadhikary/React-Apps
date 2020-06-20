@@ -5,7 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import BotHeader from "./botHeader";
 import Chat from "./chat";
 import BotInput from "./botInput";
-import messages from "./testMessages.json";
+import { getMessageResponseAPI } from "../../services/services";
+//import messages from "./testMessages.json";
 
 const styles = (theme) => ({
   paper: {
@@ -26,25 +27,52 @@ const styles = (theme) => ({
   },
 });
 
-class BotModal extends Component {
+class BotMain extends Component {
   state = {
-    messages: messages,
+    messages: [
+      {
+        user: "professor",
+        message:
+          "Good day! I'm your friendly Professor AR Bot. \
+        I can help you analyze info on AR from your customers. \
+        To find out what I can do , you can ask me that, or type help anytime.",
+      },
+    ],
+  };
+
+  addMessageToChat = (usr, msg) => {
+    const msgResponse = {
+      user: usr,
+      message: msg,
+    };
+
+    const allMessages = [...this.state.messages, msgResponse];
+    this.setState({ messages: allMessages });
   };
 
   sendUserMessage = (msg) => {
     //console.log("You typed: ", msg)
     if (msg === "") return;
 
-    const newMessage = {
-      user: "me",
-      message: msg,
-    };
-    const allMessages = [...this.state.messages, newMessage];
-    this.setState({ messages: allMessages });
+    this.addMessageToChat("me", msg);
+
+    getMessageResponseAPI(msg)
+      .then((response) => {
+        //console.log(response.data);
+        this.addMessageToChat("professor", response.data.message);
+      })
+      .catch((err) => {
+        this.addMessageToChat(
+          "professor",
+          "My server is currently \
+          offline. Please try again later. "
+        );
+      });
   };
 
   handleClose = () => {
-    this.setState({ messages: [] });
+    const initialMsg = this.state.messages[0];
+    this.setState({ messages: [initialMsg] });
     this.props.handleMinimize();
   };
 
@@ -84,4 +112,4 @@ class BotModal extends Component {
   }
 }
 
-export default withStyles(styles)(BotModal);
+export default withStyles(styles)(BotMain);

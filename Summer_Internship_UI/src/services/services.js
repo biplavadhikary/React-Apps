@@ -61,3 +61,15 @@ export function callPredictionAPI(data) {
     }
   );
 }
+
+export function getMessageResponseAPI(msg) {
+  return axios.post(
+    "http://localhost:4000/chat",
+    {
+      message: msg
+    },
+    {
+      headers: { "Content-Type": "application/json"},
+    }
+  );
+}

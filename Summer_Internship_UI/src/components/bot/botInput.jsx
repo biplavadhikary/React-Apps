@@ -6,7 +6,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { withStyles } from "@material-ui/core/styles";
 import sendIcon from "../../assets/send.svg";
 
-
 const styles = (theme) => ({
   container: {
     display: "flex",
