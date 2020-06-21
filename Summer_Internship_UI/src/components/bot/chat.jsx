@@ -13,6 +13,7 @@ class Chat extends Component {
           <Grid
             container
             item
+            autoid="ai"
             justify="flex-start"
             style={{ marginBottom: 20 }}
           >
@@ -29,6 +30,7 @@ class Chat extends Component {
           <Grid
             container
             item
+            autoid="human"
             justify="flex-end"
             style={{ marginBottom: 20, textAlign: "right", whiteSpace: "pre-line" }}
           >

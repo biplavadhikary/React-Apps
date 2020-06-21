@@ -54,7 +54,7 @@ class SearchBar extends Component {
       <Grid container alignItems="center" style={{ padding: 10 }}>
         <Grid item xs={1}>
           <Icon>
-            <img src={searchIcon} alt="S" style={{ width: "80%", float: "right" }}/>
+            <img src={searchIcon} alt="S" style={{ width: "80%", float: "right" }} autoid="search-icon" />
           </Icon>
         </Grid>
         <Grid item xs={11}>
@@ -81,13 +81,15 @@ class SearchBar extends Component {
                 notchedOutline: classes.notchedOutline,
                 input: classes.nameInput,
               },
+              autoid: "search-close-icon",
               endAdornment: <InputAdornment position="end">
                 <Icon>
-                  <img src={moneyIcon} alt="$"></img>
+                  <img src={moneyIcon} alt="$" autoid="advance-search-drop-down"></img>
                 </Icon>
               </InputAdornment>,
             }}
             notched="true"
+            autoid="search-text-field"
           />
         </Grid>
       </Grid>

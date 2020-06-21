@@ -20,6 +20,7 @@ class Header extends Component {
         <img
           src={backIcon}
           alt="<-"
+          autoid="navigation-back-button"
           style={{ width: "50%", paddingRight: 20, cursor: "pointer" }}
         ></img>
       </Link>
@@ -96,6 +97,7 @@ class Header extends Component {
         <Grid xs={4} sm={3} item>
           <img
             src={freedaBtn}
+            autoid="professor-button"
             style={{
               borderRadius: 40,
               height: 28,

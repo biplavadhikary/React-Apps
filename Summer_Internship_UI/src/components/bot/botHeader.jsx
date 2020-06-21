@@ -16,7 +16,7 @@ const BotHeader = (props) => {
       </Grid>
       <Grid item xs={3} container justify="space-between" style={{ cursor: "pointer" }}>
         <img src={minimizeIcon} alt="-" style={{ width: "30%" }} onClick={raiseMinimize}></img>
-        <img src={closeIcon} alt="X" style={{ width: "30%" }} onClick={raiseClose}></img>
+        <img src={closeIcon} alt="X" style={{ width: "30%" }} onClick={raiseClose} autoid="professor-close-button"></img>
       </Grid>
     </Grid>
   );

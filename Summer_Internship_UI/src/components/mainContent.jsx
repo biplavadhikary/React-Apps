@@ -32,6 +32,7 @@ class MainContent extends Component {
         />
         <InvoiceTable
           invoices={invoices}
+          autoid="invoice-table-collector"
           classes={classes}
           card={card}
           // raiseCustomerDetails={raiseCustomerDetails}

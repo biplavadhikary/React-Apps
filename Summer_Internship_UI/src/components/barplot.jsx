@@ -23,6 +23,7 @@ class Barplot extends Component {
       <HighchartsReact
         className={classes.root}
         highcharts={Highcharts}
+        autoid="companycode-chart"
         options={this.getOptions(
           customers,
           this.getCategories,

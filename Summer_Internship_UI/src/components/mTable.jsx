@@ -157,6 +157,7 @@ let EnhancedTableToolbar = (props) => {
             variant="outlined"
             size="medium"
             color="secondary"
+            autoid="predict-button"
             className={classes.button}
             disabled={numSelected > 0 ? false : true}
             onClick={() => raisePredict(selectedItems)}
@@ -379,11 +380,14 @@ class EnhancedTable extends Component {
           count={data.length}
           rowsPerPage={rowsPerPage}
           page={page}
+          autoid="invoice-table-pagination-collector"
           backIconButtonProps={{
             "aria-label": "Previous Page",
+            "autoid": "pagination-button-previous-collector"
           }}
           nextIconButtonProps={{
             "aria-label": "Next Page",
+            "autoid": "pagination-button-next-collector"
           }}
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}

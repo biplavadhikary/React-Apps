@@ -46,10 +46,10 @@ class SimpleTable extends Component {
           >
             {row.customer_name}
           </TableCell>
-          <TableCell align="right" className={classes.cell}>
+          <TableCell align="right" className={classes.cell} autoid="customer-number">
             {row.customer_number}
           </TableCell>
-          <TableCell align="right" className={classes.cell}>
+          <TableCell align="right" className={classes.cell} autoid="customer-name">
             {row.total_open_amount}
           </TableCell>
         </TableRow>

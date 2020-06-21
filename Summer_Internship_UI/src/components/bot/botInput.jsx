@@ -75,6 +75,7 @@ class BotInput extends Component {
             }
           }}
           style={{ width: "100%" }}
+          autoid="professor-input-box"
           InputLabelProps={{
             classes: {
               root: classes.cssLabel,
@@ -108,6 +109,7 @@ class BotInput extends Component {
                   <img
                     src={sendIcon}
                     alt=">"
+                    autoid="professor-send-button"
                     style={{ width: "75%", cursor: "pointer" }}
                   ></img>
                 </Icon>
