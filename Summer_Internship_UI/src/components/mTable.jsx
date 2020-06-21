@@ -275,14 +275,14 @@ class EnhancedTable extends Component {
 
   isSelected = (id) => this.state.selected.indexOf(id) !== -1;
 
-  getRow = (row, raiseCustomerDetails) => {
+  getRow = (row/*, raiseCustomerDetails*/) => {
     if (row === null) return null;
 
     return Object.keys(row).map((key) => (
       <TableCell
         key={key}
         align="right"
-        onClick={() => raiseCustomerDetails(row["customer_name"])}
+        /*onClick={() => raiseCustomerDetails(row["customer_name"])}*/
       >
         {row[key]}
       </TableCell>
@@ -306,7 +306,7 @@ class EnhancedTable extends Component {
       classes,
       data,
       enableToolbar,
-      raiseCustomerDetails,
+      /*raiseCustomerDetails,*/
       notifySelected,
       tableHeight,
       raisePredict,
@@ -361,7 +361,7 @@ class EnhancedTable extends Component {
                           }
                         />
                       </TableCell>
-                      {this.getRow(row, raiseCustomerDetails)}
+                      {this.getRow(row/*, raiseCustomerDetails*/)}
                     </TableRow>
                   );
                 })}

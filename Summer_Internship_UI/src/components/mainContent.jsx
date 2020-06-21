@@ -34,7 +34,7 @@ class MainContent extends Component {
           invoices={invoices}
           classes={classes}
           card={card}
-          raiseCustomerDetails={raiseCustomerDetails}
+          // raiseCustomerDetails={raiseCustomerDetails}
           raisePredict={raisePredict}
         />
       </Grid>

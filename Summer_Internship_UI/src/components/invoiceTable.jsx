@@ -29,7 +29,7 @@ class InvoiceTable extends Component {
           <EnhancedTable
             data={invoices}
             classes={classes}
-            raiseCustomerDetails={raiseCustomerDetails}
+            // raiseCustomerDetails={raiseCustomerDetails}
             enableToolbar={enableToolbar}
             notifySelected={notifySelected}
             raisePredict={raisePredict}
