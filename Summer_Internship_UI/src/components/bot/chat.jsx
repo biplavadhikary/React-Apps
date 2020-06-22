@@ -18,7 +18,7 @@ class Chat extends Component {
             style={{ marginBottom: 20 }}
           >
             <Grid item xs={2}>
-              <img src={professorIcon} alt="O" style={{ width: "50%" }}></img>
+              <img src={professorIcon} alt="O" style={{ width: "50%", transform: "scaleX(-1)" }}></img>
             </Grid>
             <Grid item xs={6} style={{ whiteSpace: "pre-line" }}>
               {message.message}
