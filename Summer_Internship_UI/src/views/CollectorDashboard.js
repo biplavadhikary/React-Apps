@@ -68,6 +68,18 @@ class CollectorDashboard extends Component {
     else this.setState({ redirect: true, selectedCustomerName: custName });
   };
 
+  handleAdvancedSearch = (op, amt) => {
+    //console.log("Your advanced search options are: ", op, amt)
+    if (amt === "") {
+      alert("Amount cannot be Empty!"); 
+      return;
+    }
+
+    callInvoiceAPI("all", op, amt).then(response => {
+      this.setState({ invoices: response.data.invoiceList })
+    })
+  }
+
   updateDashboardData = (customerNumber, customerName, shouldRedirect) => {
     this.setState(
       {
@@ -149,6 +161,7 @@ class CollectorDashboard extends Component {
           raiseCustomerDetails={this.redirectToCustomerDetails}
           raiseCustomerTable={this.updateDashboardData}
           raisePredict={this.handlePredict}
+          raiseAdvancedSearch={this.handleAdvancedSearch}
         />
         <Footer />
 

@@ -28,17 +28,17 @@ class LeftBar extends Component {
     if (plotData.length !== 0 && plotData !== undefined) {
       if (plotData[0].customer_number === "All") {
         let plotDataNew = [...plotData];
-        plotDataNew.shift()
-        return plotDataNew
+        plotDataNew.shift();
+        return plotDataNew;
       }
-      return plotData
+      return plotData;
     }
     // console.log("undefined")
-    return plotData
-  }
+    return plotData;
+  };
 
   render() {
-    const { card, classes, customers, raiseCustomerTable } = this.props;
+    const { card, classes, customers, raiseCustomerTable, raiseAdvancedSearch } = this.props;
     const { searchVal } = this.state;
 
     const customersAll = this.addAllCustomerObject(customers);
@@ -80,7 +80,10 @@ class LeftBar extends Component {
             xs={12}
             item
           >
-            <SearchBar raiseSearch={this.handleSearch} />
+            <SearchBar
+              raiseSearch={this.handleSearch}
+              raiseAdvancedSearch={raiseAdvancedSearch}
+            />
             <SimpleTable
               data={filteredData}
               classes={classes}

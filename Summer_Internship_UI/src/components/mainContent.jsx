@@ -9,11 +9,12 @@ class MainContent extends Component {
     const {
       card,
       classes,
-      raiseCustomerDetails,
+      //raiseCustomerDetails,
       raiseCustomerTable,
       raisePredict,
       customers,
       invoices,
+      raiseAdvancedSearch
     } = this.props;
 
     return (
@@ -29,6 +30,7 @@ class MainContent extends Component {
           customers={customers}
           classes={classes}
           raiseCustomerTable={raiseCustomerTable}
+          raiseAdvancedSearch={raiseAdvancedSearch}
         />
         <InvoiceTable
           invoices={invoices}

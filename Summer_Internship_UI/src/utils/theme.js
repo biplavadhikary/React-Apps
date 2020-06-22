@@ -55,6 +55,12 @@ export default createMuiTheme({
       root: {
         padding: "0 20px",
       }
+    },
+
+    MuiSelect: {
+      icon: {
+        color: "silver"
+      }
     }
   }
 });
