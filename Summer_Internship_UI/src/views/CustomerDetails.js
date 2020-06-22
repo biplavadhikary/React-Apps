@@ -111,7 +111,7 @@ class CustomerDetails extends Component {
             enableToolbar={false}
             raiseCustomerDetails={this.handleCustomerUpdate}
             notifySelected={this.updateSelected}
-            tableHeight={"auto"}
+            tableHeight={"50vh"}
           />
         </Grid>
         <Footer />

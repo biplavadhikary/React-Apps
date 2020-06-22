@@ -199,7 +199,7 @@ class CustomerHeader extends Component {
                 );
                 this.handleClose();
               }}
-              variant="outlined"
+              variant="contained"
               size="medium"
               color="secondary"
               className={classes.button}

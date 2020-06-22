@@ -212,7 +212,7 @@ class EnhancedTable extends Component {
     orderBy: "calories",
     selected: [],
     page: 0,
-    rowsPerPage: 5,
+    rowsPerPage: 10,
   };
 
   handleRequestSort = (event, property) => {
