@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import LeftBar from "./leftBar";
-import InvoiceTable from "./invoiceTable";
+import InvoiceTable from "./common/invoiceTable";
 
 class MainContent extends Component {
 
@@ -9,6 +9,7 @@ class MainContent extends Component {
     const {
       card,
       classes,
+      loading,
       //raiseCustomerDetails,
       raiseCustomerTable,
       raisePredict,
@@ -39,6 +40,7 @@ class MainContent extends Component {
           card={card}
           // raiseCustomerDetails={raiseCustomerDetails}
           raisePredict={raisePredict}
+          loading={loading}
         />
       </Grid>
     );

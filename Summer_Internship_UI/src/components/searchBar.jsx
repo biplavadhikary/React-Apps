@@ -9,7 +9,7 @@ import searchIcon from "../assets/mag-glass.svg";
 import moneyIcon from "../assets/attach_money.svg";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import SearchAdvanced from "./searchAdvanced";
-import Collapse from '@material-ui/core/Collapse';
+import Collapse from "@material-ui/core/Collapse";
 
 const styles = (theme) => ({
   container: {
@@ -26,9 +26,11 @@ const styles = (theme) => ({
   cssLabel: {
     color: "silver",
     fontSize: 12,
+    top: -6,
 
     "&$cssFocused": {
       color: "cyan",
+      top: 4,
     },
   },
   cssFocused: {},
@@ -43,6 +45,11 @@ const styles = (theme) => ({
     borderColor: "#5DAAE0 !important",
     borderRadius: 50,
   },
+  nameInput: {
+    fontSize: 12,
+    color: "#FFFFFF",
+    height: 4,
+  },
 });
 
 class SearchBar extends Component {
@@ -54,13 +61,18 @@ class SearchBar extends Component {
   };
 
   setSearchBarContentAndRaise = (e, raiseSearch) => {
-    this.setState({ searchBarValue: e.target.value })
-    raiseSearch(e)
-  }
+    this.setState({ searchBarValue: e.target.value });
+    raiseSearch(e);
+  };
 
   turnOffAdvancedSearch = (op, amt) => {
-    const searchString = "Customers with " + op + " $" + amt + " Open Amount";
-    this.setState({ advancedSearchOn: false, searchBarValue: searchString });
+    this.setState({ advancedSearchOn: false });
+
+    if (op !== undefined) {
+      console.log("Op is: ", op);
+      const searchString = "Customers with " + op + " $" + amt + " Open Amount";
+      this.setState({ searchBarValue: searchString });
+    }
   };
 
   shouldAdvanceSearchRender = (
@@ -106,7 +118,7 @@ class SearchBar extends Component {
               className={classes.textField}
               margin="dense"
               variant="outlined"
-              autoComplete="on"
+              autoComplete="off"
               style={{ width: "94%" }}
               value={this.state.searchBarValue}
               onChange={(e) => this.setSearchBarContentAndRaise(e, raiseSearch)}

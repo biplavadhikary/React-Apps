@@ -21,5 +21,7 @@ export default function dashboardReducer(state = initState, action) {
   switch (action.type) {
     case actions.UPDATE_DASHBOARD:
       return { ...action.payload };
+    default:
+      return {}
   }
 }

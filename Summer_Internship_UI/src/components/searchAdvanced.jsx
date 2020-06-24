@@ -18,9 +18,9 @@ const searchBasis = [
 ];
 
 const styles = (theme) => ({
-  nameInput: {
+  nameInput2: {
     fontSize: 12,
-    color: "#FFFFFF",
+    padding: 8
   },
   whiteColor: {
     color: "white",
@@ -55,19 +55,18 @@ class SearchAdvanced extends Component {
         spacing={16}
         xs={12}
       >
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{ padding: "4px 2px" }}>
           <Typography className={classes.textStyle1}>
             Advanced Search
           </Typography>
         </Grid>
 
         {/* DropDown */}
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{ padding: "0 2px" }}>
           <TextField
             select
             fullWidth
             value={this.state.advancedOperation}
-            className={classes.textField}
             onChange={this.handleChange("advancedOperation")}
             InputProps={{
               startAdornment: (
@@ -79,16 +78,7 @@ class SearchAdvanced extends Component {
               ),
               classes: {
                 underline: classes.underline,
-              },
-            }}
-            SelectProps={{
-              className: {
-                root: {
-                  color: "red",
-                },
-                "&:before": {
-                  borderColor: "red",
-                },
+                input: classes.nameInput2,
               },
             }}
           >
@@ -101,10 +91,9 @@ class SearchAdvanced extends Component {
         </Grid>
 
         {/* Amount */}
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{ padding: "0 2px" }}>
           <TextField
             fullWidth
-            className={classes.textField}
             type="number"
             autoid="advance-search-open-amount"
             value={this.state.amount}
@@ -121,16 +110,17 @@ class SearchAdvanced extends Component {
               ),
               classes: {
                 underline: classes.underline,
+                input: classes.nameInput2,
               },
             }}
           ></TextField>
         </Grid>
 
         {/* Buttons */}
-        <Grid item container xs={12} justify="flex-end" spacing={16}>
+        <Grid item container xs={12} justify="flex-end" spacing={16} style={{ padding: "20px 0" }}>
           <Grid item>
             <Button
-              onClick={turnOffAdvancedSearch}
+              onClick={() => turnOffAdvancedSearch()}
               variant="outlined"
               size="small"
               color="secondary"

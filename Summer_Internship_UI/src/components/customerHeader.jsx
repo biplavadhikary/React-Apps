@@ -49,6 +49,7 @@ class CustomerHeader extends Component {
       this.setState({ omtVal: evt.target.value });
   };
 
+  // trick to either render from props if state val is empty
   renderVal = (def, stateVal) => {
     if (stateVal === null) return def;
     else return stateVal;
@@ -69,6 +70,7 @@ class CustomerHeader extends Component {
       filenamePostfix,
     } = this.props;
 
+    // extract those invoices who's pk_id is in selected list
     const filteredData = this.filterSelected(data, selected);
     let selectedData = data.find((entry) => entry.pk_id === selected[0]);
     if (selectedData === undefined)
@@ -108,7 +110,7 @@ class CustomerHeader extends Component {
           </Tooltip>
           <CSVLink
             data={filteredData}
-            filename={"Invoice-data-" + filenamePostfix + ".csv"}
+            filename={"1706124-exportedData-" + filenamePostfix + ".csv"}
             onClick={() => selected.length !== 0}
             style={{
               textDecoration: "none",
@@ -169,7 +171,7 @@ class CustomerHeader extends Component {
               margin="dense"
               label="Document Type"
               name="dtype"
-              value={this.renderVal(selectedData.doctype, this.state.dtypeVal)}
+              value={this.renderVal(selectedData.document_type, this.state.dtypeVal)}
               type="text"
               onChange={this.handleTextChange}
               InputLabelProps={{

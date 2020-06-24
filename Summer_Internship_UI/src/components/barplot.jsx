@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { withStyles } from "@material-ui/core/styles";
-import theme from "../utils/theme";
 
 const styles = (theme) => ({
   root: {
@@ -93,7 +92,7 @@ class Barplot extends Component {
           data: getData(customers),
           states: {
             select: {
-              color: "#9dcffa",
+              color: "#5da6d4",
             },
           },
           borderWidth: 0,
@@ -155,7 +154,7 @@ class Barplot extends Component {
                   );
                   raiseCustomerTable(
                     selectedCustomer.customer_number,
-                    selectedCustomer.customer_name,
+                    selectedCustomer.name_of_customer,
                     false
                   );
                 } else {

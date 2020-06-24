@@ -1,5 +1,3 @@
-import theme from './theme';
-
 export const dashboardStyle = (theme) => ({
   root: {
     flexGrow: 1,

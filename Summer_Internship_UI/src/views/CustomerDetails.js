@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Header from "../components/header";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Footer from "../components/Footer";
+import Footer from "../components/common/Footer";
 import { customerDetailsTheme } from "../utils/styles";
 import CustomerHeader from "../components/customerHeader";
-import InvoiceTable from "../components/invoiceTable";
+import InvoiceTable from "../components/common/invoiceTable";
 import { callForModificationUpdate } from "../services/services";
 
 const styles = customerDetailsTheme;
@@ -60,14 +60,14 @@ class CustomerDetails extends Component {
       .then((response) => {
 
         if (response.status === 200) {
-          console.log(response.status);
+          // console.log(response.status);
           const updatedInvoices = this.state.invoices;
           let indexToModify = updatedInvoices.findIndex(
             (entry) => entry.pk_id === pk_id
           );
           // console.log("Before Modification: ", updatedInvoices[indexToModify].doctype, updatedInvoices[indexToModify].total_open_amount);
           if (dtypeVal !== null)
-            updatedInvoices[indexToModify].doctype = dtypeVal;
+            updatedInvoices[indexToModify]['document_type'] = dtypeVal;
           if (omtVal !== null)
             updatedInvoices[indexToModify].total_open_amount = parseFloat(
               omtVal

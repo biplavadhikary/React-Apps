@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import InvoiceARCard from "./invoiceARCard";
+import InvoiceARCard from "./common/invoiceARCard";
 import { formatter } from "../utils/formatter";
 
 class InvoiceAR extends Component {

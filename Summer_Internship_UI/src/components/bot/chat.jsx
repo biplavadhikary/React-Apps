@@ -6,6 +6,8 @@ import userIcon from "../../assets/avatar.svg";
 
 class Chat extends Component {
   renderMessages = (messages) => {
+    let keyCount = 0;
+
     return messages.map((message) => {
       /* Bot Message */
       if (message.user === "professor")
@@ -15,10 +17,15 @@ class Chat extends Component {
             item
             autoid="ai"
             justify="flex-start"
+            key={++keyCount}
             style={{ marginBottom: 20 }}
           >
             <Grid item xs={2}>
-              <img src={professorIcon} alt="O" style={{ width: "50%", transform: "scaleX(-1)" }}></img>
+              <img
+                src={professorIcon}
+                alt="O"
+                style={{ width: "50%", transform: "scaleX(-1)" }}
+              ></img>
             </Grid>
             <Grid item xs={6} style={{ whiteSpace: "pre-line" }}>
               {message.message}
@@ -32,7 +39,12 @@ class Chat extends Component {
             item
             autoid="human"
             justify="flex-end"
-            style={{ marginBottom: 20, textAlign: "right", whiteSpace: "pre-line" }}
+            key={++keyCount}
+            style={{
+              marginBottom: 20,
+              textAlign: "right",
+              whiteSpace: "pre-line",
+            }}
           >
             <Grid item xs={6}>
               {message.message}
@@ -46,8 +58,13 @@ class Chat extends Component {
             </Grid>
           </Grid>
         );
+      else return null;
     });
   };
+
+  componentDidUpdate () {
+    this.el.scrollIntoView({ behavior: 'smooth' });
+  }
 
   render() {
     const { messages } = this.props;
@@ -68,6 +85,9 @@ class Chat extends Component {
       >
         <Grid item container>
           {this.renderMessages(messages)}
+
+          {/* Dummy Element For Scroll */}
+          <div ref={el => { this.el = el; }} />
         </Grid>
       </Grid>
     );

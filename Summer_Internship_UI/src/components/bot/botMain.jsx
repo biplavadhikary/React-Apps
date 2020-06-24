@@ -33,9 +33,9 @@ class BotMain extends Component {
       {
         user: "professor",
         message:
-          "Good day! I'm your friendly Professor AR Bot. \
-        I can help you analyze info on AR from your customers. \
-        To find out what I can do , you can ask me that, or type help anytime.",
+          `Good day! I'm your friendly Professor AR Bot. 
+          I can help you analyze info on AR from your customers. 
+          To find out what I can do , you can ask me that, or type help anytime.`,
       },
     ],
   };
@@ -46,7 +46,7 @@ class BotMain extends Component {
       message: msg,
     };
 
-    const allMessages = [...this.state.messages, msgResponse];
+    const allMessages = [ ...this.state.messages, msgResponse];
     this.setState({ messages: allMessages });
   };
 
@@ -64,8 +64,8 @@ class BotMain extends Component {
       .catch((err) => {
         this.addMessageToChat(
           "professor",
-          "My server is currently \
-          offline. Please try again later. "
+          `My server is currently 
+          offline. Please try again later. `
         );
       });
   };

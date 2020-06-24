@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-import CustomerARCard from "./customerARCard"
+import CustomerARCard from "./common/customerARCard"
 import { formatter } from "../utils/formatter"
 
 class CustomerAR extends Component {

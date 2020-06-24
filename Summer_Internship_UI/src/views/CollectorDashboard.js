@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Footer from "../components/Footer";
+import Footer from "../components/common/Footer";
 import { dashboardStyle } from "../utils/styles";
 import {
   callInvoiceAPI,
@@ -27,7 +27,7 @@ class CollectorDashboard extends Component {
 
     this.state = {
       redirect: false,
-      loading: false,
+      loading: true,
       invoices: [],
       customers: [],
       invoiceStats: {
@@ -55,6 +55,7 @@ class CollectorDashboard extends Component {
         this.setState({
           invoices: response.data.invoiceList,
           invoiceStats: response.data.stats,
+          loading: false
         });
         //console.log(this.state.invoices);
       });
@@ -139,7 +140,7 @@ class CollectorDashboard extends Component {
 
   render() {
     const { classes } = this.props;
-    const { invoiceStats, selectedCustomerName } = this.state;
+    const { invoiceStats, selectedCustomerName, loading } = this.state;
 
     const card = {
       padding: "5vh 1vw",
@@ -158,6 +159,7 @@ class CollectorDashboard extends Component {
           customers={this.state.customers}
           classes={classes}
           card={card}
+          loading={loading}
           raiseCustomerDetails={this.redirectToCustomerDetails}
           raiseCustomerTable={this.updateDashboardData}
           raisePredict={this.handlePredict}

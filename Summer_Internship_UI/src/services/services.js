@@ -7,7 +7,7 @@ export function serviceCall() {
 
 export function callInvoiceAPI(custNum, advancedOp, advancedAmt) {
   //console.log(`Server URL: ${SERVER_URL}${ROLL_NUMBER}/dummy.do?`);
-  console.log("Advanced Search Data: ", advancedOp, advancedAmt)
+  // console.log("Advanced Search Data: ", advancedOp, advancedAmt)
   return axios.post(
     `${SERVER_URL}${ROLL_NUMBER}/customerInvoiceServlet`,
     {},
@@ -17,7 +17,7 @@ export function callInvoiceAPI(custNum, advancedOp, advancedAmt) {
         id: custNum,
         advOperation: advancedOp,
         advAmount: advancedAmt,
-        limit: 100,
+        limit: 5000,
       },
     }
   );
@@ -58,6 +58,7 @@ export function callPredictionAPI(data) {
     },
     {
       headers: { "Content-Type": "application/json" },
+      /* Sending it in Headers might give errors if the data exceeds capacity, so send it in body */
       params: {
         // data: {
         //   id: "1706124",

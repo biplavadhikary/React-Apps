@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import theme from '../src/utils/theme';
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import CollectorDashboard from '../src/views/CollectorDashboard';
 import CustomerDetails from '../src/views/CustomerDetails';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import {ROLL_NUMBER} from '../src/utils/constants';
 
 const styles = (theme) => ({
@@ -41,7 +38,7 @@ const styles = (theme) => ({
 class App extends Component {
   render() {
     //console.log('theme', theme);
-    const { classes, user } = this.props;
+    const { classes } = this.props;
     return (
       // <MuiThemeProvider theme={theme}>
       <div className={classes.mainBackground}>

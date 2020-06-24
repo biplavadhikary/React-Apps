@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./searchBar";
-import SimpleTable from "./simpleTable";
+import SimpleTable from "./common/simpleTable";
 import Barplot from "./barplot";
 import Zoom from "@material-ui/core/Zoom";
 
@@ -12,7 +12,7 @@ class LeftBar extends Component {
 
   addAllCustomerObject = (customers) => {
     const all = {
-      customer_name: "All Customers",
+      name_of_customer: "All Customers",
       customer_number: "All",
       total_open_amount: "-",
     };
@@ -41,11 +41,10 @@ class LeftBar extends Component {
     const { card, classes, customers, raiseCustomerTable, raiseAdvancedSearch } = this.props;
     const { searchVal } = this.state;
 
-    const customersAll = this.addAllCustomerObject(customers);
-
-    let filteredData = customersAll.filter(
+    //const customersAll = this.addAllCustomerObject(customers);
+    let filteredData = customers.filter(
       (customer) =>
-        customer["customer_name"].toLowerCase().indexOf(searchVal) !== -1 ||
+        customer["name_of_customer"].toLowerCase().indexOf(searchVal) !== -1 ||
         customer["customer_number"].toString().indexOf(searchVal) !== -1 ||
         customer["total_open_amount"].toString().indexOf(searchVal) !== -1
     );
