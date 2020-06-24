@@ -23,8 +23,8 @@ class InvoiceARCard extends Component {
           style={card}
           alignItems="center"
           direction="column"
-          xs={6}
-          sm={4} 
+          // xs={6}
+          // sm={4} 
         >
           <Typography className={classes.textStyle1 + " " + classes.textCenter}>
             {title}

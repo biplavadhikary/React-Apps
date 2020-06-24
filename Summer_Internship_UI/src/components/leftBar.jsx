@@ -57,7 +57,7 @@ class LeftBar extends Component {
         xs={12}
         sm={4}
         direction="column"
-        style={{ height: "64vh" }}
+        style={{ height: "62vh", margin: "10px 0" }}
       >
         <Zoom in={true}>
           <Grid
