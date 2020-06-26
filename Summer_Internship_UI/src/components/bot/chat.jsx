@@ -15,7 +15,6 @@ class Chat extends Component {
           <Grid
             container
             item
-            autoid="ai"
             justify="flex-start"
             key={++keyCount}
             style={{ marginBottom: 20 }}
@@ -27,7 +26,7 @@ class Chat extends Component {
                 style={{ width: "50%", transform: "scaleX(-1)" }}
               ></img>
             </Grid>
-            <Grid item xs={6} style={{ whiteSpace: "pre-line" }}>
+            <Grid item xs={6} autoid="ai" style={{ whiteSpace: "pre-line" }}>
               {message.message}
             </Grid>
           </Grid>
@@ -37,7 +36,6 @@ class Chat extends Component {
           <Grid
             container
             item
-            autoid="human"
             justify="flex-end"
             key={++keyCount}
             style={{
@@ -46,7 +44,7 @@ class Chat extends Component {
               whiteSpace: "pre-line",
             }}
           >
-            <Grid item xs={6}>
+            <Grid item autoid="human" xs={6}>
               {message.message}
             </Grid>
             <Grid item xs={2}>

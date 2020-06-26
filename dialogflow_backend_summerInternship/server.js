@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/chat", (req, res) => {
   const { message } = req.body;
+  console.log("Received Message: \n", message)
   processMessage(message).then((textRes) => {
     res.send({ message: textRes });
   });

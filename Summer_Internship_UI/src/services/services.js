@@ -17,7 +17,7 @@ export function callInvoiceAPI(custNum, advancedOp, advancedAmt) {
         id: custNum,
         advOperation: advancedOp,
         advAmount: advancedAmt,
-        limit: 5000,
+        limit: 5000,    // override this limitiation if you need
       },
     }
   );
@@ -53,23 +53,25 @@ export function callPredictionAPI(data) {
   return axios.post(
     "http://127.0.0.1:5000/predict?",
     {
-      id: "1706124",
-      data: data,
+      // id: "1706124",
+      // data: data,
     },
     {
       headers: { "Content-Type": "application/json" },
-      /* Sending it in Headers might give errors if the data exceeds capacity, so send it in body */
+      /* sending it in Headers might give errors if the data exceeds capacity, 
+         so send it in body if required, and modify the flask script accordingly */
       params: {
-        // data: {
-        //   id: "1706124",
-        //   data: data
-        // },
+        data: {
+          id: "1706124",
+          data: data
+        },
       },
     }
   );
 }
 
 export function getMessageResponseAPI(msg) {
+  // console.log("Sending message to API: ", msg)
   return axios.post(
     "http://localhost:4000/chat",
     {

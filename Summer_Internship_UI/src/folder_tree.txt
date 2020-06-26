@@ -1,0 +1,81 @@
+Folder PATH listing for volume DATA
+Volume serial number is 5AD9-75B6
+D:.
+|   App.css
+|   App.js
+|   App.test.js
+|   dec.json
+|   index.css
+|   index.js
+|   logo.svg
+|   Resultant.txt
+|   serviceWorker.js
+|   setupTests.js
+|   test.js
+|   
++---actions
+|       actionCreator.js
+|       actionTypes.js
+|       reducer.js
+|       
++---assets
+|       attach_money.svg
+|       avatar.svg
+|       check_box.svg
+|       check_box_outline_blank.svg
+|       close.svg
+|       companyLogo.svg
+|       FredaButton.png
+|       hrcwhite.svg
+|       john.svg
+|       left-arrow.svg
+|       mag-glass.svg
+|       minimize.svg
+|       navigate_before.svg
+|       send.svg
+|       voiceIcon.svg
+|       
++---components
+|   |   barplot.jsx
+|   |   customerAR.jsx
+|   |   customerHeader.jsx
+|   |   header.jsx
+|   |   invoiceAR.jsx
+|   |   leftBar.jsx
+|   |   mainContent.jsx
+|   |   searchAdvanced.jsx
+|   |   searchBar.jsx
+|   |   
+|   +---bot
+|   |       botHeader.jsx
+|   |       botInput.jsx
+|   |       botMain.jsx
+|   |       chat.jsx
+|   |       testMessages.json
+|   |       
+|   \---common
+|           customerARCard.jsx
+|           Footer.js
+|           invoiceARCard.jsx
+|           invoiceTable.jsx
+|           loaderCustomized.jsx
+|           mTable.jsx
+|           simpleTable.jsx
+|           
++---reducers
+|       createDashboard.js
+|       index.js
+|       
++---services
+|       services.js
+|       
++---utils
+|       constants.js
+|       formatter.js
+|       styles.js
+|       theme.js
+|       
+\---views
+        CollectorDashboard.js
+        CustomerDetails.js
+        

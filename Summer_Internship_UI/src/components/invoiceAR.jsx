@@ -4,7 +4,6 @@ import InvoiceARCard from "./common/invoiceARCard";
 import { formatter } from "../utils/formatter";
 
 class InvoiceAR extends Component {
-  state = {};
   render() {
     const { classes, card, stats } = this.props;
 

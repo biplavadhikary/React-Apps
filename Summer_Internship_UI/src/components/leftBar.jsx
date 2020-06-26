@@ -54,10 +54,10 @@ class LeftBar extends Component {
       <Grid
         container
         item
-        xs={12}
-        sm={4}
+        sm={12}
+        md={4}
         direction="column"
-        style={{ height: "62vh", margin: "10px 0" }}
+        style={{ height: "63vh" }}
       >
         <Zoom in={true}>
           <Grid

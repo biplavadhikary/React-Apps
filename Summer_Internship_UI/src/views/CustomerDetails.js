@@ -28,6 +28,7 @@ class CustomerDetails extends Component {
       );
       this.state = {
         customer: this.props.location.state.customer || {},
+        code: this.props.location.state.code || {},
         invoices: specifiedColInvoices,
         stats: this.props.location.state.stats,
         selected: [],
@@ -83,17 +84,17 @@ class CustomerDetails extends Component {
   };
 
   render() {
-    const { customer, invoices, stats, selected } = this.state;
+    const { customer, code, invoices, stats, selected } = this.state;
     const { classes } = this.props;
     //console.log("Invoices in CustomerDetails: ", invoices);
 
     return (
       <Grid container className={classes.root} spacing={8}>
-        <Header title={customer} back={true} />
+        <Header title={customer} code={code} back={true} />
         <Grid
           container
           direction="column"
-          style={{ ...card, marginTop: 10, paddingTop: 5, height: "80vh" }}
+          style={{ ...card, marginTop: 10, paddingTop: 5, height: "82vh" }}
         >
           <CustomerHeader
             card={card}

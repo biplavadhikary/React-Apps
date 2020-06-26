@@ -40,7 +40,7 @@ async function processMessage(message) {
         resultMultiple += allResponses[i].text.text[0]
         if (i !== allResponses.length - 1) resultMultiple += "\n\n"
       }
-      console.log(resultMultiple)
+      console.log("Response: \n", resultMultiple)
 
       return resultMultiple;
     })

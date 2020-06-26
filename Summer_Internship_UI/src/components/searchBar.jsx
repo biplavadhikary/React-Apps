@@ -142,7 +142,6 @@ class SearchBar extends Component {
                       <img
                         src={moneyIcon}
                         alt="$"
-                        autoid="advance-search-drop-down"
                       ></img>
                     </Icon>
                     <Icon>

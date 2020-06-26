@@ -173,6 +173,7 @@ class CollectorDashboard extends Component {
               pathname: "/customer-dashboard",
               state: {
                 customer: this.state.selectedCustomerName,
+                code: this.state.selectedCustomerId,
                 invoices: this.state.invoices,
                 stats: {
                   total_open_invoices: invoiceStats.total_open_invoices,

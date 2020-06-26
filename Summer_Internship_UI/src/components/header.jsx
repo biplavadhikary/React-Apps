@@ -33,6 +33,13 @@ class Header extends Component {
     );
   };
 
+  renderCompanyCode = (code) => {
+    if (code === undefined) return null
+    else {
+    return <span style={{ fontSize: 10 }}><br />{code}</span>
+    } 
+  }
+
   handleOpen = () => {
     this.setState({ botModalOpen: true });
   };
@@ -42,7 +49,7 @@ class Header extends Component {
   };
 
   render() {
-    const { title, classes, back: renderBack } = this.props;
+    const { title, code, classes, back: renderBack } = this.props;
 
     return (
       <Grid
@@ -76,6 +83,7 @@ class Header extends Component {
               }}
             >
               {title || "Adhikary Products"}
+              {this.renderCompanyCode(code)}
             </Typography>
           </div>
         </Grid>

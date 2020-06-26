@@ -58,7 +58,7 @@ class BotMain extends Component {
 
     getMessageResponseAPI(msg)
       .then((response) => {
-        //console.log(response.data);
+        // console.log(response.data);
         this.addMessageToChat("professor", response.data.message);
       })
       .catch((err) => {
